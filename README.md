@@ -33,16 +33,19 @@ Distribuidas en cuatro categorias, la web permite a lxs usuarixs obtener mejor i
 
         `git clone https://github.com/Caritas-Habits/Back-End.git`
 
-2. Luego, inicia el back-end con `npm run dev`, este comando inciará el back-end en http://localhost:5050
-
-Si lo prefieres, puedes cambiar el puerto de conexión en el archivo `./src/index`
+2. Luego, inicia el back-end con `npm run dev`, este comando inciará el back-end en http://localhost:5050 .Si lo prefieres, puedes cambiar el puerto de conexión en el archivo `./src/index`
 
 3. Si quieres ver su funcionamiento en el front, deberás clonar también ese repositorio.
         `git clone https://github.com/Caritas-Habits/Front-End.git`
 
 4. Para ver el proyecto, necesitaras ejecutar el siguiente comando para instalar las dependencias utilizadas y de esta forma poder tener el proyecto con todas sus funciones y vistas correctamente.
 
-`npm install`
+        `npm install`
+
+5.Finalmente, con el siguiente comando, iniciaras el front:
+
+        `npm start`
+    
 
 
 ## Stack 
