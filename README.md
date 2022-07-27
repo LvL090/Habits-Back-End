@@ -1,5 +1,5 @@
 # Habit+ (Under development)
-## Back-end repository
+### Back-end repository
 
 Aplicación web para mejorar los hábitos de los usuarios de Cáritas
 
