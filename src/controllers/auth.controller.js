@@ -39,7 +39,7 @@ export const signIn = async (req, res) => {
         // Request body email can be an email or username
         const userFound = await User.findOne({ email: req.body.email }).populate("roles");
 
-        if (!userFound) return res.status(401).json({ message: "El usuario /* o la contraseña no son correctas */" });
+        if (!userFound) return res.status(401).json({ message: "El usuario" });
 
         const matchPassword = await User.comparePassword(
             req.body.password,

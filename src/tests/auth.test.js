@@ -13,11 +13,6 @@ describe('auth verification', () => {
     password: "password"
   }
 
-  /* const defaultUser = {
-    email: "user@auth.com",
-    password: "password"
-  } */
-
   const defaultGuest = {
     email: "guest@auth.com",
     password: "password"
@@ -28,7 +23,6 @@ describe('auth verification', () => {
     const guestRole = await Role.findOne({name: 'guest'});
   
     await User.deleteMany({
-      // delete all users and guests
       $or: [
         {roles: {$in: [userRole._id]}},
         {roles: {$in: [guestRole._id]}},
@@ -44,25 +38,6 @@ describe('auth verification', () => {
       console.log(err)
     }
   })
-
-  /* test('should return 401 if no token', async () => {
-    const response = await supertest(app)
-      .get('/api/auth/verify')
-      .expect(401)
-      .expect('Content-Type', /application\/json/);
-    expect(response.body.message).toBe('No token provided');
-  })
-
-  test('should return 401 if invalid token', async () => {}) */
-
-  /* test('should return 200 if valid token', async () => {
-    const response = await api
-      .get('/api/auth/verify')
-      .set('Authorization', `Bearer ${tokenAdmin.body.token}`)
-      .expect(200)
-      .expect('Content-Type', /application\/json/);
-    expect(response.body.message).toBe('Token is valid');
-  }) */
 
   test('get token admin on signin should return 200 if valid credentials', async () => {
     const response = await api

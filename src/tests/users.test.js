@@ -98,22 +98,7 @@ describe('users CRUD', () => {
       })
       .set('x-access-token', tokenUser.body.token);
 
-    // get token for guest
-    /* tokenGuest = await api
-      .post('/api/auth/signin')
-      .send({
-        email: initialUsers[1].email,
-        password: initialUsers[1].password
-      })
-      .expect(200)
-      .expect('Content-Type', /application\/json/); */
-    // console.log(tokenGuest)
-    // console.log(tokenGuest.body.token)
-
-    return {
-      tokenUser,
-      // tokenGuest
-    }
+    return tokenUser
   });
   
   afterAll( async () => {
