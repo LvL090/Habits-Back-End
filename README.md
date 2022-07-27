@@ -13,6 +13,8 @@ Distribuidas en cuatro categorias, la web permite a lxs usuarixs obtener mejor i
 
 ## La web en uso
 
+![image (1)](https://user-images.githubusercontent.com/99019637/181199222-7da57588-40bf-44df-8f90-2b1fa5c83510.png)
+![image](https://user-images.githubusercontent.com/99019637/181199231-e88687fb-2972-4f4d-985a-3278b4954ba8.png)
 
 
 ## Funcionalidades
@@ -32,6 +34,7 @@ Distribuidas en cuatro categorias, la web permite a lxs usuarixs obtener mejor i
 2. Luego, inicia el back-end con `npm run dev`, este comando inciará el back-end en http://localhost:5050 .Si lo prefieres, puedes cambiar el puerto de conexión en el archivo `./src/index`
 
 3. Si quieres ver su funcionamiento en el front, deberás clonar también ese repositorio.
+
         `git clone https://github.com/Caritas-Habits/Front-End.git`
 
 4. Para ver el proyecto, necesitaras ejecutar el siguiente comando para instalar las dependencias utilizadas y de esta forma poder tener el proyecto con todas sus funciones y vistas correctamente.
