@@ -114,7 +114,7 @@ describe('sections CRUD', () => {
       const response = await api
         .post('/sections')
         .send(createSection)
-        .set('x-access-token', tokenAdmin.body.token)
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`)
         .expect(201)
         .expect('Content-Type', /application\/json/);
 
@@ -131,11 +131,11 @@ describe('sections CRUD', () => {
       const response = await api
         .post('/sections')
         .send(createSection)
-        .expect(403)
+        .expect(401)
         .expect('Content-Type', /application\/json/);
 
       expect(response.body).toMatchObject({
-        message: "Usuario no encontrado"
+        message: "No dispones de la autorización adecuada"
       });
     })
   })

@@ -17,11 +17,11 @@ export const getUserRoles = async (req, res) => {
 }
 
 export const updateUser = async (req, res) => {
-    const { name, surname, age, address, city, province, zip, phone, sex, nationality, email, password } = req.body;
+    const { name, surname, age, address, city, province, zip, phone, sex, nationality } = req.body;
     
     const roles = await Role.findOne({name: "user"});
 
-    await User.findByIdAndUpdate(req.params.id, { name, surname, age, address, city, province, zip, phone, sex, nationality, email, password, roles });
+    await User.findByIdAndUpdate(req.params.id, { name, surname, age, address, city, province, zip, phone, sex, nationality, roles });
     res.json({ message: 'El usuario ha sido actualizado' });
 }
 

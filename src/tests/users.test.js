@@ -66,14 +66,14 @@ describe('users CRUD', () => {
       await api
         .post('/api/auth/signup')
         .send(user)
-        .set('x-access-token', tokenAdmin.body.token)
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`)
         .expect(200)
         .expect('Content-Type', /application\/json/);
     });
 
     const getAllUsers = await api
       .get('/users')
-      .set('x-access-token', tokenAdmin.body.token);
+      .set('authorization', `Bearer ${tokenAdmin.body.token}`);
 
     const getUser = getAllUsers.body[1];
     
@@ -96,7 +96,7 @@ describe('users CRUD', () => {
       .send({
         roles: [await Role.find({name: 'user'})]
       })
-      .set('x-access-token', tokenUser.body.token);
+      .set('authorization', `Bearer ${tokenUser.body.token}`);
 
     return tokenUser
   });
@@ -114,7 +114,7 @@ describe('users CRUD', () => {
     test('should return all users (role admin)', async () => {
       const response = await api
         .get('/users')
-        .set('x-access-token', tokenAdmin.body.token)
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`)
         .expect(200)
         .expect('Content-Type', /application\/json/);
 
@@ -124,13 +124,13 @@ describe('users CRUD', () => {
     test('should return a user (role admin)', async () => {
       const getAllUsers = await api
         .get('/users')
-        .set('x-access-token', tokenAdmin.body.token);
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`);
       
       const getUser = getAllUsers.body[1];
       
       const response = await api
         .get(`/users/${getUser._id}`)
-        .set('x-access-token', tokenAdmin.body.token)
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`)
         .expect(200)
         .expect('Content-Type', /application\/json/);
 
@@ -142,14 +142,14 @@ describe('users CRUD', () => {
     test('should update a user (role admin)', async () => {
       const getAllUsers = await api
         .get('/users')
-        .set('x-access-token', tokenAdmin.body.token);
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`);
 
       const getUser = getAllUsers.body[1];
 
       const response = await api
         .put(`/users/${getUser._id}`)
         .send(updateUser)
-        .set('x-access-token', tokenAdmin.body.token)
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`)
         .expect(200)
         .expect('Content-Type', /application\/json/);
       
@@ -161,7 +161,7 @@ describe('users CRUD', () => {
     test('should update a user (is same user)', async () => {
       const getAllUsers = await api
         .get('/users')
-        .set('x-access-token', tokenAdmin.body.token);
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`);
 
       const getUser = getAllUsers.body[1];
 
@@ -172,7 +172,7 @@ describe('users CRUD', () => {
           surname: 'user',
           roles: [await Role.find({name: 'user'})]
         })
-        .set('x-access-token', tokenUser.body.token)
+        .set('authorization', `Bearer ${tokenUser.body.token}`)
         .expect(200)
         .expect('Content-Type', /application\/json/);
       
@@ -184,7 +184,7 @@ describe('users CRUD', () => {
     test('should not update a user (is not same user and not admin)', async () => {
       const getAllUsers = await api
         .get('/users')
-        .set('x-access-token', tokenAdmin.body.token);
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`);
 
       const getUser = getAllUsers.body[2];
 
@@ -195,7 +195,7 @@ describe('users CRUD', () => {
           surname: 'user',
           roles: [await Role.find({name: 'user'})]
         })
-        .set('x-access-token', tokenUser.body.token)
+        .set('authorization', `Bearer ${tokenUser.body.token}`)
         .expect(401)
         .expect('Content-Type', /application\/json/);
       
@@ -209,14 +209,14 @@ describe('users CRUD', () => {
     test('admin may delete a user', async () => {
       const getAllUsers = await api
         .get('/users')
-        .set('x-access-token', tokenAdmin.body.token);
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`);
 
       const getUser = getAllUsers.body[2];
       const userId = getUser._id;
 
       const userDelete = await api
         .delete(`/users/${userId}`)
-        .set('x-access-token', tokenAdmin.body.token)
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`)
         .expect(200)
         .expect('Content-Type', /application\/json/);
       
@@ -224,7 +224,7 @@ describe('users CRUD', () => {
       
       const getAllAfterDelete = await api
         .get('/users')
-        .set('x-access-token', tokenAdmin.body.token);
+        .set('authorization', `Bearer ${tokenAdmin.body.token}`);
       expect(getAllAfterDelete.body.length).toBe(initialUsers.length);
     });
   });

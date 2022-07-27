@@ -56,10 +56,6 @@ export const signIn = async (req, res) => {
             expiresIn: 86400, // 24 hours
         });
 
-        res.cookie('jwt', token, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 });
-        res.cookie('idUser', idUser, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 });
-        res.cookie('roles', roles, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 });
-
         res.status(200).json({ idUser, roles, token });
     } catch (error) {
         console.log(error);
@@ -69,8 +65,5 @@ export const signIn = async (req, res) => {
 };
 
 export const signOut = async (req, res) => {
-    res.clearCookie('jwt');
-    res.clearCookie('idUser');
-    res.clearCookie('roles');
     res.json({ message: "Sesión cerrada" });
 }
