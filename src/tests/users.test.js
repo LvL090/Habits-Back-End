@@ -75,14 +75,14 @@ describe('users CRUD', () => {
       .get('/users')
       .set('authorization', `Bearer ${tokenAdmin.body.token}`);
 
-    const getUser = getAllUsers.body[1];
+    const getUser = getAllUsers.body.filter(user => user.email === "test.user@gmail.com");
     
     try {
       tokenUser = await api
         .post('/api/auth/signin')
         .send({
-          email: initialUsers[0].email,
-          password: initialUsers[0].password
+          email: "test.user@gmail.com",
+          password: "password"
         })
         .expect(200)
         .expect('Content-Type', /application\/json/);
@@ -162,15 +162,14 @@ describe('users CRUD', () => {
       const getAllUsers = await api
         .get('/users')
         .set('authorization', `Bearer ${tokenAdmin.body.token}`);
-
-      const getUser = getAllUsers.body[1];
+        
+      const getUser = getAllUsers.body.filter(user => user.email === "test.user@gmail.com")[0];
 
       const response = await api
         .put(`/users/${getUser._id}`)
         .send({
           name: 'update',
-          surname: 'user',
-          roles: [await Role.find({name: 'user'})]
+          surname: 'from user',
         })
         .set('authorization', `Bearer ${tokenUser.body.token}`)
         .expect(200)
@@ -192,8 +191,7 @@ describe('users CRUD', () => {
         .put(`/users/${getUser._id}`)
         .send({
           name: 'update',
-          surname: 'user',
-          roles: [await Role.find({name: 'user'})]
+          surname: 'from guest',
         })
         .set('authorization', `Bearer ${tokenUser.body.token}`)
         .expect(401)
